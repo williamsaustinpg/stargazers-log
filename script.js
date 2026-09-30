@@ -4,7 +4,16 @@ fetch("events.json")
     const list = document.querySelector("#starred");
     events.forEach((event) => {
       const item = document.createElement("li");
-      item.textContent = `${event.name} — starred ${event.starred}`;
-      list.appendChild(item);
+      const name = document.createElement("span");
+      const date = document.createElement("time");
+
+      name.className = "repo-name";
+      name.textContent = event.name;
+      date.className = "starred-date";
+      date.dateTime = event.starred;
+      date.textContent = `Starred ${event.starred}`;
+
+      item.append(name, date);
+      list.append(item);
     });
   });

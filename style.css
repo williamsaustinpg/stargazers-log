@@ -1,14 +1,120 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f4ef;
+  --paper-raised: #fffefa;
+  --ink: #17252a;
+  --muted: #66736f;
+  --rule: #d8d8cf;
+  --accent: #146356;
+  --star: #c78314;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
-  margin: 2rem;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 31px,
+    rgba(23, 37, 42, 0.035) 32px
+  );
+  font-family: "Trebuchet MS", sans-serif;
 }
 
-ul {
+main {
+  width: min(100% - 2rem, 720px);
+  margin: 0 auto;
+  padding: clamp(3rem, 10vh, 7rem) 0;
+}
+
+header {
+  margin-bottom: 2.5rem;
+  padding-left: 1.25rem;
+  border-left: 4px solid var(--star);
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.25rem, 8vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.intro {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+#starred {
   list-style: none;
+  margin: 0;
   padding: 0;
+  background: var(--paper-raised);
+  border-top: 3px solid var(--ink);
+  box-shadow: 0 14px 35px rgba(23, 37, 42, 0.08);
 }
 
-li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
+#starred li {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  min-height: 4.5rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+#starred li::before {
+  content: "\2605";
+  color: var(--star);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.repo-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.starred-date {
+  color: var(--muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  main {
+    width: min(100% - 1.25rem, 720px);
+    padding-top: 2.5rem;
+  }
+
+  #starred li {
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.25rem 0.75rem;
+  }
+
+  .starred-date {
+    grid-column: 2;
+  }
 }
